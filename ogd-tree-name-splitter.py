@@ -353,7 +353,7 @@ def isBaum(genus,height,circumference,width,species,year):
     return False
 
 wfile = csv.writer(open(outfile, "wb"))
-wfile.writerow(["x","y","natural","tree:ref", "species","species:de","circumference","height","width","type","taxon:cultivar","taxon","start_date","fixme","source"])
+wfile.writerow(["x","y","natural","tree:ref", "species","species:de","circumference","height","diameter_crown","type","taxon:cultivar","taxon","start_date","fixme","source"])
 
 ifile = open(infile, "r")
 reader = csv.reader(ifile, delimiter=',', quotechar='"')
