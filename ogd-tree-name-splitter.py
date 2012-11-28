@@ -13,9 +13,19 @@
 import csv
 import re
 import datetime
+import sys
 
-infile = "csv/BAUMOGD_edited.csv"
-outfile = "csv/out2.csv"
+print "INPUT: " + sys.argv[1]
+print "OUTPUT: " + sys.argv[2]
+
+if sys.argv[1] == "":
+    print "usage: ogd-tree-name-splitter.py [INFILE] [OUTFILE]"
+
+if sys.argv[2] == "":
+    print "usage: ogd-tree-name-splitter.py [INFILE] [OUTFILE]"
+
+infile = sys.argv[1]
+outfile = sys.argv[2]
 
 def extractGeometry(row):
     '''convert the geometry from the CSV to an geometry-array'''
@@ -238,8 +248,15 @@ def setTaxon(species,sorte):
         taxon = species
             
 def makeReplacements(stri):
+    stri = stri.replace('Sumach, Essigbaum','Essigbaum')
+    stri = stri.replace('Kiefer, Föhre','Föhre')
+    stri = stri.replace('Schwarzkiefer, Schwarzföhre','Schwarzföhre')
+    stri = stri.replace('Malus spec., Apfel','Malus spec. (Apfel)')
+    stri = stri.replace('Juglans nigra, Schwarznuß','Juglans nigra (Schwarznuss)')
+    stri = stri.replace('Blaufichte, Silberfichte','Silberfichte')
     stri = stri.replace("kiefer","föhre")
     stri = stri.replace("Kiefer","Föhre")
+    stri = stri.replace('"','')
     return stri
     
 def isBaum(genus,height,circumference,width,species,year):
