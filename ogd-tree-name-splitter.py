@@ -416,7 +416,7 @@ for row in reader:
         diameter_crown = detectWidth(row)
         ttype = setTtype(genus.lower())
         taxon = setTaxon(species,sorte)
-        print taxon
+        
         if isBaum(genus,height,circumference, diameter_crown,species,year):
             added += 1
             wfile.writerow([geo[0],geo[1], "tree", treeid, species, deutsch, circumference, height, diameter_crown, ttype, sorte, taxon, year,"","OGD Vienna"])
