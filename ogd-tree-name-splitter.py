@@ -242,10 +242,15 @@ def detectWidth(row):
     return diameter_crown
     
 def setTaxon(species,sorte):
+    # print species + " - " + sorte
     if sorte:
         taxon = species + " " + sorte
     else:
-        taxon = species
+        if species:
+          taxon = species
+        else:
+          taxon = ""
+    return taxon
             
 def makeReplacements(stri):
     stri = stri.replace('Sumach, Essigbaum','Essigbaum')
@@ -411,7 +416,7 @@ for row in reader:
         diameter_crown = detectWidth(row)
         ttype = setTtype(genus.lower())
         taxon = setTaxon(species,sorte)
-        
+        print taxon
         if isBaum(genus,height,circumference, diameter_crown,species,year):
             added += 1
             wfile.writerow([geo[0],geo[1], "tree", treeid, species, deutsch, circumference, height, diameter_crown, ttype, sorte, taxon, year,"","OGD Vienna"])
