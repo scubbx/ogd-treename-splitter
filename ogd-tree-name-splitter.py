@@ -29,7 +29,7 @@ outfile = sys.argv[2]
 
 def extractGeometry(row):
     '''convert the geometry from the CSV to an geometry-array'''
-    geo = str(row[1])
+    geo = str(row[2])
     splitGeo = geo.split()
     x = splitGeo[1][1:]
     y = splitGeo[2]
@@ -178,7 +178,7 @@ def detectSpecies(stri):
     return species
 
 def detectHeight(row):
-    height = str(row[9])
+    height = str(row[10])
     
     if height != "":
             if float(height) > 50:
@@ -207,7 +207,7 @@ def detectDeutsch(stri):
     return deutsch
     
 def detectCircumference(row):
-    circumference = str(row[7])
+    circumference = str(row[8])
     if circumference == " ":
         circumference = ""
     elif circumference == "":
@@ -219,7 +219,7 @@ def detectCircumference(row):
     return circumference
     
 def detectYear(row):
-    year = str(row[6]).strip()
+    year = str(row[7]).strip()
     if year != "":
         if int(year) < 1500:
             year = ""
@@ -228,11 +228,11 @@ def detectYear(row):
     return year
 
 def detectTreeId(row):
-    treeid = str(row[2]).strip()
+    treeid = str(row[3]).strip()
     return treeid
     
 def detectWidth(row):
-    diameter_crown = str(row[8])
+    diameter_crown = str(row[9])
     
     if diameter_crown != "":
         if float(diameter_crown) > 40:
@@ -275,7 +275,7 @@ def isBaum(genus,height,circumference,width,species,year):
     width = float(width)
     if year == "": year = 0
     year = int(year)
-
+    
     if height <= 2 and (int(datetime.datetime.now().year) - year) >= 3 :
         # print "height: " + str(height) + "  " + "age: " + str(int(datetime.datetime.now().year) - year)
         return False
@@ -393,7 +393,7 @@ for row in reader:
     if rownum == 0:
         header = row
     else:
-        stri = str(row[5])
+        stri = str(row[6])
 
         '''überspringe "Leerer Pflanzstandort" oder andere unerwünschte Punkte'''
         if stri == "Leerer Pflanzstandort" or stri == "Leerer Baumstandort" or stri == "Baumgruppe":
